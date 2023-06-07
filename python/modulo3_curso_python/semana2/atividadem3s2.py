@@ -10,8 +10,8 @@ def decorator_imprimir(func):
 def juros_simples(capital, taxa, tempo):
     return capital * (taxa / 100) * tempo
 
-if __name__ == "__main__":
-    capital = int(input())
-    taxa = int(input())
-    tempo = int(input())
-    juros_simples(capital, taxa, tempo)
+
+capital = float(input())
+taxa = float(input())
+tempo = float(input())
+juros_simples(capital, taxa, tempo)
