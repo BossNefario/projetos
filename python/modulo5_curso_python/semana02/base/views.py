@@ -1,18 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from base.forms import ContatoForm, BanhoForm
+from base.forms import ContatoForm, ReservaBanhoForm
+from base.models import Contato, ReservaBanho
 
 def inicio(request):
     return render(request, 'inicio.html')
 
 def contato(request):
     sucesso = False
-    if request.method == 'GET':
-        form = ContatoForm()
-    else:
-        form = ContatoForm(request.POST)
-        if form.is_valid():
-            sucesso = True
+    form = ContatoForm(request.POST or None)
+    if form.is_valid():
+        sucesso = True
+        form.save()
     contexto = {
         'telefone': '(92) 98239-0513',
         'responsavel': 'Bruno Almeida',
@@ -23,12 +21,10 @@ def contato(request):
 
 def reservabanho(request):
     sucesso = False
-    if request.method == 'GET':
-        form = BanhoForm()
-    else:
-        form = BanhoForm(request.POST)
-        if form.is_valid():
+    form = ReservaBanhoForm(request.POST or None)
+    if form.is_valid():
             sucesso = True
+            form.save()
     contexto = {
         'form': form,
         'sucesso': sucesso

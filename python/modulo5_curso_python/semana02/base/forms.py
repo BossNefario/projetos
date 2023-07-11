@@ -1,12 +1,12 @@
 from django import forms
+from base.models import Contato, ReservaBanho
 
-class ContatoForm(forms.Form):
-    nome = forms.CharField()
-    email = forms.EmailField()
-    mensagem = forms.CharField(widget=forms.Textarea)
+class ContatoForm(forms.ModelForm):
+    class Meta:
+        model = Contato
+        fields = ['nome', 'email', 'mensagem']
     
-class BanhoForm(forms.Form):
-    pet_nome = forms.CharField()
-    telefone = forms.CharField()
-    data_da_reserva = forms.DateField()
-    observacoes = forms.CharField(widget=forms.Textarea)
+class ReservaBanhoForm(forms.ModelForm):
+    class Meta:    
+        model = ReservaBanho
+        fields = ['petnome', 'telefone', 'datareserva', 'observacoes']
