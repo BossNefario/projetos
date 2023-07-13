@@ -10,3 +10,9 @@ class ReservaBanhoForm(forms.ModelForm):
     class Meta:    
         model = ReservaBanho
         fields = ['petnome', 'telefone', 'datareserva', 'observacoes']
+        labels = {
+            'petnome': 'Nome do Pet',
+            'telefone': 'Telefone',
+            'datareserva': 'Data da Reserva',
+            'observacoes': 'Observações'
+        }
