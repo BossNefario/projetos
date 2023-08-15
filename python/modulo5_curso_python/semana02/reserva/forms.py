@@ -9,6 +9,12 @@ class ReservaForm(forms.ModelForm):
         hoje = date.today()
         if data < hoje:
             raise forms.ValidationError('Não é possível realizar uma reserva para uma data passada!')
+        
+        # Verificar a quantidade de reservas para o dia em questão
+        num_reservas = Reserva.objects.filter(data=data).count()
+        if num_reservas >= 4:
+            raise forms.ValidationError("Já existem 4 reservas para este dia. Não é possível fazer mais reservas.")
+        
         return data
     
     class Meta:
